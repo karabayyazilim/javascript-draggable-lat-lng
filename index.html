@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript Ders</title>
+</head>
+<body>
+
+<div id="map" style="width: 600px; height: 500px;"></div>
+
+<input type="text" id="lat">
+<input type="text" id="lng">
+
+<script src="http://maps.google.com/maps/api/js?key=HereApıKey"></script>
+<script
+        src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+        crossorigin="anonymous"></script>
+
+<script>
+    var map = new google.maps.Map(document.getElementById('map'),{
+       center:{
+           lat:39.00,
+           lng:30.68
+       },
+        zoom:5
+    });
+
+    var marker = new google.maps.Marker({
+       position:{
+           lat:39.00,
+           lng:30.68
+       },
+        map:map,
+        draggable:true
+    });
+
+    google.maps.event.addListener(marker,'dragend',function () {
+        var lat = marker.getPosition().lat();
+        var lng = marker.getPosition().lng();
+
+        $('#lat').val(lat);
+        $('#lng').val(lng);
+    })
+</script>
+
+</body>
+</html>
